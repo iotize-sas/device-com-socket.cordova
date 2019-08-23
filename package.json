@@ -1,0 +1,57 @@
+{
+  "name": "@iotize/device-com-socket.cordova",
+  "version": "0.0.1-alpha.1",
+  "description": "IoTize tap device communication with Socket",
+  "main": "dist/index.js",
+  "cordova": {
+    "id": "iotize-device-com-socket.cordova",
+    "platforms": [
+      "android",
+      "ios"
+    ]
+  },
+  "scripts": {
+    "build": "npm run clean && npm run build:ts && npm run build:webpack",
+    "prepare": "npm run build",
+    "watch": "tsc -p ./tsconfig.lib.json -w",
+    "build:ts": "tsc -p ./tsconfig.lib.json",
+    "build:webpack": "webpack --config webpack.config.js",
+    "clean": "rm -rf ./dist/*",
+    "test": "npm run test:unit",
+    "test:unit": "mocha --recursive src/www/**/*.spec.ts"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/iotize-sas/device-com-socket.cordova.git"
+  },
+  "keywords": [
+    "iotize",
+    "tap",
+    "socket",
+    "cordova"
+  ],
+  "author": "IoTize",
+  "license": "Copyright (c) 2015, Blocshop s.r.o.",
+  "bugs": {
+    "url": "https://github.com/iotize-sas/device-com-socket.cordova/issues"
+  },
+  "homepage": "https://github.com/iotize-sas/device-com-socket.cordova#readme",
+  "devDependencies": {
+    "@types/chai": "^4.2.0",
+    "@types/debug": "^4.1.5",
+    "@types/mocha": "^5.2.7",
+    "@types/node": "^12.7.2",
+    "babel-polyfill": "^6.26.0",
+    "babel-preset-env": "^1.6.1",
+    "chai": "^4.2.0",
+    "compression-webpack-plugin": "^3.0.0",
+    "cordova": "^5.0.0",
+    "mocha": "^6.2.0",
+    "mochawesome": "^4.1.0",
+    "rxjs": "^6.5.2",
+    "webpack": "^4.39.2",
+    "webpack-bundle-analyzer": "^3.4.1",
+    "webpack-cli": "^3.3.7",
+    "webpack-rxjs-externals": "^2.0.0"
+  }
+}

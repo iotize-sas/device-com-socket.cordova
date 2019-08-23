@@ -158,7 +158,9 @@ Socket.prototype._ensureState = function(requiredState, errorCallback) {
     var state = this._state;
     if (state != requiredState) {
         window.setTimeout(function() {
-            errorCallback("Invalid operation for this socket state: " + Socket.State[state]);
+            errorCallback(new Error(
+                "Invalid operation for this socket state: " + Socket.State[state] + ". Expected: " + Socket.State[requiredState]
+            ));
         });
         return false;
     }
