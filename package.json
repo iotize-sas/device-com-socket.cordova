@@ -1,10 +1,10 @@
 {
   "name": "@iotize/device-com-socket.cordova",
-  "version": "0.0.1-alpha.1",
+  "version": "1.0.0-alpha.1",
   "description": "IoTize tap device communication with Socket",
   "main": "dist/index.js",
   "cordova": {
-    "id": "iotize-device-com-socket.cordova",
+    "id": "cordova-plugin-iotize-device-com-socket",
     "platforms": [
       "android",
       "ios"

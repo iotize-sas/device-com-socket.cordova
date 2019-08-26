@@ -1,0 +1,7 @@
+node_modules
+npm-debug.log
+src/www
+tsconfig.*
+webpack.config.js
+test/
+*.tgz
