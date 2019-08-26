@@ -36,6 +36,7 @@
   },
   "homepage": "https://github.com/iotize-sas/device-com-socket.cordova#readme",
   "devDependencies": {
+    "@iotize/device-client.js": "0.0.1-alpha.100",
     "@types/chai": "^4.2.0",
     "@types/debug": "^4.1.5",
     "@types/mocha": "^5.2.7",
@@ -48,9 +49,13 @@
     "mocha": "^6.2.0",
     "mochawesome": "^4.1.0",
     "rxjs": "^6.5.2",
+    "uglifyjs-webpack-plugin": "^2.2.0",
     "webpack": "^4.39.2",
     "webpack-bundle-analyzer": "^3.4.1",
     "webpack-cli": "^3.3.7",
     "webpack-rxjs-externals": "^2.0.0"
+  },
+  "peerDependencies": {
+    "@iotize/device-client.js": "0.0.1-alpha.100"
   }
 }
