@@ -37,7 +37,7 @@
   },
   "homepage": "https://github.com/iotize-sas/device-com-socket.cordova#readme",
   "devDependencies": {
-    "@iotize/device-client.js": "0.0.1-alpha.100",
+    "@iotize/device-client.js": "^0.0.1-alpha.100",
     "@types/chai": "^4.2.0",
     "@types/debug": "^4.1.5",
     "@types/mocha": "^5.2.7",
