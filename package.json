@@ -57,6 +57,7 @@
     "webpack-rxjs-externals": "^2.0.0"
   },
   "peerDependencies": {
+    "@iotize/common": "1.0.0-alpha.1",
     "@iotize/device-client.js": "0.0.1-alpha.100"
   }
 }
