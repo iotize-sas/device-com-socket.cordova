@@ -6,7 +6,7 @@ import { first, share } from 'rxjs/operators';
 
 import { debug } from './debug';
 import { SocketInterface, SocketState, SocketStatic } from './socket';
-import { sleep } from './util';
+import { sleep } from '@iotize/common/utility';
 
 declare var Socket: SocketStatic;
 
