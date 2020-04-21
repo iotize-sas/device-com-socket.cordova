@@ -9,7 +9,7 @@
     <license>Apache 2.0</license>
     <keywords>socket,sockets,network,tcp,cordova</keywords>
 
-    <js-module src="socket.js" name="Socket">
+    <js-module src="www/SocketPlugin.js" name="Socket">
         <clobbers target="window.Socket" />
     </js-module>
     

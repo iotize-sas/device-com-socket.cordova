@@ -1,6 +1,6 @@
 {
     "name": "@iotize/device-com-socket.cordova",
-    "version": "2.0.0-alpha.2",
+    "version": "2.0.0-alpha.3",
     "description": "IoTize tap device communication with Socket",
     "main": "dist/index.js",
     "cordova": {
@@ -36,28 +36,9 @@
         "url": "https://github.com/iotize-sas/device-com-socket.cordova/issues"
     },
     "homepage": "https://github.com/iotize-sas/device-com-socket.cordova#readme",
-    "devDependencies": {
-        "@iotize/device-client.js": "^0.0.1-alpha.100",
-        "@types/chai": "^4.2.0",
-        "@types/debug": "^4.1.5",
-        "@types/mocha": "^5.2.7",
-        "@types/node": "^12.7.2",
-        "babel-polyfill": "^6.26.0",
-        "babel-preset-env": "^1.6.1",
-        "chai": "^4.2.0",
-        "compression-webpack-plugin": "^3.0.0",
-        "cordova": "^5.0.0",
-        "mocha": "^6.2.0",
-        "mochawesome": "^4.1.0",
-        "rxjs": "^6.5.2",
-        "uglifyjs-webpack-plugin": "^2.2.0",
-        "webpack": "^4.39.2",
-        "webpack-bundle-analyzer": "^3.4.1",
-        "webpack-cli": "^3.3.7",
-        "webpack-rxjs-externals": "^2.0.0"
-    },
     "peerDependencies": {
-        "@iotize/common": "1.0.0-alpha.4",
-        "@iotize/device-client.js": "1.0.0-alpha.5"
+        "@iotize/common": "1.0.0-alpha.7",
+        "@iotize/device-client.js": "1.0.0-alpha.7",
+        "rxjs": "^6.5.4"
     }
 }

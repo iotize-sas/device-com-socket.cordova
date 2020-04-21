@@ -5,7 +5,7 @@ import { BehaviorSubject, Observable, Observer, of, Subject } from 'rxjs';
 import { first, share } from 'rxjs/operators';
 
 import { debug } from './debug';
-import { SocketInterface, SocketState, SocketStatic } from './socket';
+import { SocketInterface, SocketState, SocketStatic } from './socket-definitions';
 import { sleep } from '@iotize/common/utility';
 
 declare var Socket: SocketStatic;
