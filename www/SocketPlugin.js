@@ -36,9 +36,16 @@ function Socket() {
 }
 
 Socket.prototype.open = function (host, port, success, error) {
-
     success = success || function() { };
     error = error || function() { };
+
+    if (typeof port == 'string') {
+        port = Number(port);
+        if (Number.isNaN(port)) {
+            error('invalid port');
+            return;
+        }
+    }
 
     if (!this._ensureState(Socket.State.CLOSED, error)) {
         return;
@@ -90,7 +97,6 @@ Socket.prototype.open = function (host, port, success, error) {
 };
 
 Socket.prototype.write = function (data, success, error) {
-
     success = success || function() { };
     error = error || function() { };
 
@@ -111,7 +117,6 @@ Socket.prototype.write = function (data, success, error) {
 };
 
 Socket.prototype.shutdownWrite = function (success, error) {
-
     success = success || function() { };
     error = error || function() { };
 
@@ -128,7 +133,6 @@ Socket.prototype.shutdownWrite = function (success, error) {
 };
 
 Socket.prototype.close = function (success, error) {
-
     success = success || function() { };
     error = error || function() { };
 
