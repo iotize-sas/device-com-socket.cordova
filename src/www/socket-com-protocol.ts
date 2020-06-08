@@ -21,6 +21,7 @@ export class CordovaSocketProtocol extends QueueComProtocol {
     private _receiveStream: Subject<Uint8Array>;
     private _socketOptions: SocketProtocolOptions;
     private _socketState = new BehaviorSubject(SocketState.CLOSED);
+    private _connectionEmitter?: Observer<any>;
 
     constructor(options: SocketProtocolOptions) {
         super();
@@ -77,7 +78,7 @@ export class CordovaSocketProtocol extends QueueComProtocol {
         return Observable
             .create((emitter: Observer<any>) => {
                 try {
-                    if (this._socket.state == SocketState.OPENED) {
+                    if (this._socket.state === SocketState.OPENED) {
                         emitter.next(this._socket);
                         emitter.complete();
                         return;
@@ -86,15 +87,19 @@ export class CordovaSocketProtocol extends QueueComProtocol {
                         // TODO proper error
                         throw new Error(`Invalid socket info. Missing port or host`);
                     }
+                    this._connectionEmitter = emitter;
+
                     this._socket.open(
                         this._socketOptions.host,
                         this._socketOptions.port,
                         () => {
+                            this._connectionEmitter = undefined;
                             this._socketState.next(this._socket.state);
                             emitter.next(this._socket);
                             emitter.complete();
                         },
                         (err) => {
+                            this._connectionEmitter = undefined;
                             this._socketState.next(this._socket.state);
                             emitter.error(typeof err === "string" ? new Error(err) : err);
                         }
@@ -105,7 +110,6 @@ export class CordovaSocketProtocol extends QueueComProtocol {
                 }
             })
             .pipe(
-                // concat(this._waitForSocketConnectionState(SocketState.OPENED)),
                 share()
             );
     }
@@ -162,6 +166,9 @@ export class CordovaSocketProtocol extends QueueComProtocol {
             debug("SocketProcol", "socket error: ", error);
             if (socket.state == Socket.State.OPENED) {
                 this.setConnectionState(ConnectionState.DISCONNECTED);
+            }
+            if (this._connectionSubscription){
+
             }
             this._socketState.next(socket.state);
             // TODO notify event
