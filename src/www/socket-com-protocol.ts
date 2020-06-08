@@ -1,4 +1,5 @@
 import { bufferToHexString } from '@iotize/common/byte-converter';
+import { sleep } from '@iotize/common/utility';
 import { ComProtocolConnectOptions, ConnectionState } from '@iotize/device-client.js/protocol/api';
 import { QueueComProtocol } from '@iotize/device-client.js/protocol/core';
 import { BehaviorSubject, Observable, Observer, of, Subject } from 'rxjs';
@@ -6,7 +7,6 @@ import { first, share } from 'rxjs/operators';
 
 import { debug } from './debug';
 import { SocketInterface, SocketState, SocketStatic } from './socket-definitions';
-import { sleep } from '@iotize/common/utility';
 
 declare var Socket: SocketStatic;
 
@@ -17,7 +17,7 @@ export interface SocketProtocolOptions {
 
 export class CordovaSocketProtocol extends QueueComProtocol {
 
-    private _socket: SocketInterface;
+    private _socket!: SocketInterface;
     private _receiveStream: Subject<Uint8Array>;
     private _socketOptions: SocketProtocolOptions;
     private _socketState = new BehaviorSubject(SocketState.CLOSED);
@@ -27,6 +27,7 @@ export class CordovaSocketProtocol extends QueueComProtocol {
         super();
         this.options.send.timeout = 10000;
         this.options.connect.timeout = 10000;
+        this._receiveStream = new Subject<Uint8Array>();
         this._socketOptions = options;
     }
 
@@ -55,7 +56,7 @@ export class CordovaSocketProtocol extends QueueComProtocol {
         return this.readOneValue();
     }
 
-    readOneValue(): Promise<Uint8Array> {
+    async readOneValue(): Promise<Uint8Array> {
         debug("SocketProtocol", "readOneValue", "INIT");
         return this._receiveStream.pipe(first()).toPromise();
         // return new Promise((resolve, reject) => {
@@ -73,7 +74,6 @@ export class CordovaSocketProtocol extends QueueComProtocol {
     _connect(options?: ComProtocolConnectOptions): Observable<any> {
         debug('sokcet connection', this._socketOptions);
         this._socket = this._createSocket();
-        this._receiveStream = new Subject<Uint8Array>();
 
         return Observable
             .create((emitter: Observer<any>) => {
@@ -167,7 +167,7 @@ export class CordovaSocketProtocol extends QueueComProtocol {
             if (socket.state == Socket.State.OPENED) {
                 this.setConnectionState(ConnectionState.DISCONNECTED);
             }
-            if (this._connectionSubscription){
+            if (this._connectionSubscription) {
 
             }
             this._socketState.next(socket.state);
@@ -178,9 +178,6 @@ export class CordovaSocketProtocol extends QueueComProtocol {
     }
 
     notifyNewMessage(message: Uint8Array) {
-        // if (!this._receiveStream){
-        //     throw new Error("IllegalState no receive stream");
-        // }
         debug(`notifyNewMessage() ${bufferToHexString(message)}`);
         this._receiveStream.next(message);
     }
