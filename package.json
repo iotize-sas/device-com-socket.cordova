@@ -30,7 +30,7 @@
         "socket",
         "cordova"
     ],
-    "author": "IoTize",
+    "author": "IoTize <contact@iotize.com>",
     "license": "Copyright (c) 2015, Blocshop s.r.o.",
     "bugs": {
         "url": "https://github.com/iotize-sas/device-com-socket.cordova/issues"
