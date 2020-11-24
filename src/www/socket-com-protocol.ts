@@ -1,7 +1,7 @@
 import { bufferToHexString } from '@iotize/common/byte-converter';
 import { sleep } from '@iotize/common/utility';
-import { ComProtocolConnectOptions, ConnectionState } from '@iotize/device-client.js/protocol/api';
-import { QueueComProtocol } from '@iotize/device-client.js/protocol/core';
+import { ComProtocolConnectOptions, ConnectionState } from '@iotize/tap/protocol/api';
+import { QueueComProtocol } from '@iotize/tap/protocol/core';
 import { BehaviorSubject, Observable, Observer, of, Subject } from 'rxjs';
 import { first, share } from 'rxjs/operators';
 

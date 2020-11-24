@@ -37,8 +37,8 @@
     },
     "homepage": "https://github.com/iotize-sas/device-com-socket.cordova#readme",
     "peerDependencies": {
-        "@iotize/common": "^1.0.0",
-        "@iotize/device-client.js": "1.0.0-alpha.8",
+        "@iotize/common": "^1.2.0",
+        "@iotize/tap": "^2.0.0",
         "rxjs": "^6.5.4"
     }
 }
